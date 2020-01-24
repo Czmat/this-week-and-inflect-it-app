@@ -11,9 +11,7 @@ export default function ThisWeek() {
   }
 
   const [date, setDate] = useState(week);
-  //console.log(date);
 
-  //console.log(moment(date[4]).format('dddd MMMM Do YYYY'));
   const createNextWeek = () => {
     const n = moment(date[6]).add('day', 1);
     const w = [n];
@@ -22,10 +20,8 @@ export default function ThisWeek() {
     while (w.length < 7) {
       w.push(moment(n).add('day', ++i));
     }
-    //console.log(moment(date[4]).format('dddd MMMM Do YYYY'));
 
     setDate(w);
-    //console.log(date);
   };
 
   const createPreviousWeek = () => {
@@ -36,18 +32,20 @@ export default function ThisWeek() {
     while (w.length < 7) {
       w.unshift(moment(n).add('day', --i));
     }
-    //console.log(moment(date[4]).format('dddd MMMM Do YYYY'));
 
     setDate(w);
-    console.log(w);
   };
-  console.log(date);
+
   return (
     <div className="container">
       <div className="row">
         {date.map((day, i) => {
           return (
-            <div class="card border border-info" style={{ width: '10rem' }}>
+            <div
+              key={i}
+              class="card border border-info"
+              style={{ width: '10rem' }}
+            >
               <div className="card-body ">
                 <h5 className=" card-title ">{moment(day).format('dddd ')}</h5>
                 <p>{moment(day).format('MMMM Do')}</p>
